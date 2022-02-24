@@ -44,11 +44,10 @@ class UrlTest extends WebTest {
                 () -> waits.untilUrlContains("html1"));
 
         System.out.println(assertionError.getMessage());
-
         Stream.of(
                 "Timed out after 2 seconds",
                 "Expected: a string containing \"html1\"",
-                "file:///C:/_work/demo/html/test.html"
+                format("but: was \"%s\"", APP_URL)
         ).forEach(assertionMessageSubstring -> assertThat(
                 assertionError.getMessage(),
                 containsString(assertionMessageSubstring)));
