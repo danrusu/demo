@@ -1,6 +1,7 @@
 package test1;
 
 import base.WebTest;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,29 +11,30 @@ import java.util.stream.Stream;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static utils.CustomWaits.waitUntilUrlContains;
+import utils.CustomWaits;
 
 
 class UrlTest extends WebTest {
 
     public static final String APP_URL = "http://qatools.ro/test";
-    private Duration twoSecondsDuration = Duration.ofSeconds(2);
+    private CustomWaits waits;
 
     @BeforeEach
     public void openLink(){
         driver.get(APP_URL);
+        waits = new CustomWaits(driver, Duration.ofSeconds(2));
     }
 
     @Test
-    void urlTestPositive() {
-        waitUntilUrlContains("html", driver, twoSecondsDuration);
+    void urlPositiveTest() {
+        waits.waitUntilUrlContains("html");
     }
 
     @Test
-    void urlTestNegative() {
+    void urlNegativeTest() {
         var assertionError = assertThrows(
                 AssertionError.class,
-                () -> waitUntilUrlContains("html1", driver, twoSecondsDuration));
+                () -> waits.waitUntilUrlContains("html1"));
 
         Stream.of(
                 "Timed out after 2 seconds",
