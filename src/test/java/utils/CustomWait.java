@@ -11,17 +11,16 @@ import static java.lang.String.format;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class CustomWaits {
+public class CustomWait {
     private WebDriver driver;
-
     private Duration timeout;
 
-    public CustomWaits(WebDriver driver, Duration timeout) {
+    public CustomWait(WebDriver driver, Duration timeout) {
         this.driver = driver;
         this.timeout = timeout;
     }
 
-    public void waitUntilUrlContains(String substring) {
+    public void untilUrlContains(String substring) {
         try {
             new WebDriverWait(driver, timeout)
                     .until(d -> driver.getCurrentUrl().contains(substring));
@@ -33,11 +32,7 @@ public class CustomWaits {
         }
     }
 
-    private String getTimeoutMessage() {
-        return format("Timed out after %d seconds", timeout.getSeconds());
-    }
-
-    public void waitUntilDomReady() {
+    public void untilDomReady() {
         try {
             new WebDriverWait(driver, timeout).until(d -> isDomReady());
         } catch (TimeoutException timeoutException) {
@@ -46,6 +41,14 @@ public class CustomWaits {
                     getDomReadyState(),
                     is("complete"));
         }
+    }
+
+    private String getTimeoutMessage() {
+        return format("Timed out after %d seconds", timeout.getSeconds());
+    }
+
+    public Duration getTimeout() {
+        return timeout;
     }
 
     private String getDomReadyState() {
@@ -58,7 +61,4 @@ public class CustomWaits {
         return getDomReadyState().equals("complete");
     }
 
-    public Duration getTimeout() {
-        return timeout;
-    }
 }

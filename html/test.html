@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>JS skills test</title>
+    <style>
+  html{
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  h3{
+    color: darkblue;
+    font-weight: bold;
+    font-style: italic;
+  }
+  h2{
+    color: darkblue;
+    font-size: 25px;
+  }
+  .printed{
+    color: indianred;
+    font-size: 17px;
+  }
+  .code{
+    font-weight: normal;
+    font-style: italic;
+    font-size: 16px;
+  }
+  td{
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    margin: 0px;
+  }
+  .hint{
+    font-size: 18px;
+
+    display: inline-block;
+    color: indianred;
+    font-style: italic;
+    margin: 20px, 0px;
+  }
+  caption, th{
+    display: none;
+  }
+
+    </style>
+</head>
+
+<body>
+<h2><em>Use Chrome Dev Tools / Sources / Snippets (or IDE) to solve the next tasks.</em></h2><br>
+<h3>1. You have the following information about the cars in a garage:</h3>
+<br>
+<table>
+    <caption>Cars data</caption>
+    <tr>
+        <th id="maker"></th>
+        <th id="model"></th>
+        <th id="price"></th>
+        <th id="isDiesel"></th>
+    </tr>
+    <tr>
+        <td> Ford</td>
+        <td>model Fiesta</td>
+        <td> price 15000 EUR</td>
+        <td> diesel</td>
+    </tr>
+    <td> BMW</td>
+    <td>model X5</td>
+    <td> price 78000 EUR</td>
+    <td> diesel</td>
+    </tr>
+    <td> Porsche</td>
+    <td>model 911</td>
+    <td> price 135000 EUR</td>
+    <td></td>
+    </tr>
+    <td> BMW</td>
+    <td>model 530</td>
+    <td> price 65000 USD</td>
+    <td> diesel</td>
+    </tr>
+    <td> Porsche</td>
+    <td>model 718</td>
+    <td> price 90000 USD</td>
+    <td></td>
+    </tr>
+</table>
+<br>
+<h3>How do you model this data in JavaScript so that you can easily get the following information about the garage
+    (tasks 1.1 - 1.4 should be solved with functions):<br></h3>
+<br>
+<strong>1.1 - BMW models<br></strong>
+<br>
+<div class="printed">[ 'X5', '530' ]</div>
+<br>
+<br>
+<strong>1.2 - maker and model for diesel cars<br></strong>
+<br>
+<div class="printed">[ 'Ford Fiesta', 'BMW X5', 'BMW 530' ]</div>
+<br>
+<br>
+
+<strong>1.3 - total price, for cars with prices in USD <br></strong>
+<br>
+
+<div class="printed">155000</div>
+<br>
+<br>
+
+<strong>1.4 - car makers (unique)<br></strong>
+<br>
+
+<div class="printed">[ 'Ford', 'BMW' , 'Porsche' ]</div>
+<br>
+<br>
+
+<h3>2. Create an <span class="hint">assertEquals</span> function (for strings) and use it to test the function from 1.3.
+</h3>
+<br>
+
+<h3>3. Create a function gets a number as input and returns
+    a promise that resolves after 3 seconds to the number,
+    if the number is strictly positive,
+    or rejects the <span class="code">`${nr} is not strictly positive`</span> string otherwise.
+    <br>Test it with <span class="hint">assertEquals</span> function from 2. </h3>
+<br>
+
+<h3>4. Create a function that gets a JSON object and a string path as inputs
+    and returns the value from that path from the JSON.</h3>
+<br><strong>i.e.</strong>
+<div class="code>">
+    <br>jsonObj = { container: { box: [ { id: 1 }, { toy: { id: 2 } } ], id: 3 } };
+    <br>
+    <br>jsonPath(jsonObj, 'container.id') = 3
+    <br>
+    <br>jsonPath(jsonObj, 'container.box.1.toy') = { id: 2 }
+</div>
+<br>
+<br>
+<div class="hint">Hint: You can use reduce.</div>
+<br>
+<br>
+<br>
+<h3>5. Create a counter object that you can use like this:</h3>
+<div class="code">
+    const counter = Counter();
+    <br>
+
+    <br>console.log(counter.get()); // prints 0
+    <br>
+
+    <br>counter.increment(); // increments by 1
+    <br>
+    <br>counter.increment(4); // increments by 4
+    <br>
+
+    <br>console.log(counter.get()); // prints 5
+</div>
+<br>
+<br>
+<div class="hint">Hint: You can use Closures.</div>
+<br>
+<br>
+<br>
+
+<h3>6. Create a method that returns a random gender the following array.</h3>
+<div class="code">
+    const gender = [ 'female', 'male' ];
+</div>
+<br>
+<br>
+<br>
+
+
+<script>
+  const cars = [
+    { maker: 'Ford', 'model': 'Fiesta', price: { amount: 15000, currency: 'EUR' }, isDiesel: true },
+    { maker: 'BMW', 'model': 'X5', price: { amount: 78000, currency: 'EUR' }, isDiesel: true },
+    { maker: 'Porsche', 'model': '911', price: { amount: 135000, currency: 'EUR' }, isDiesel: false },
+    { maker: 'BMW', 'model': '530', price: { amount: 65000, currency: 'USD' }, isDiesel: true },
+    { maker: 'Porsche', 'model': '718', price: { amount: 90000, currency: 'USD' }, isDiesel: false }
+  ];
+
+</script>
+</body>
+</html>

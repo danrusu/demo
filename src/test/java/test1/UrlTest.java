@@ -1,50 +1,57 @@
 package test1;
 
 import base.WebTest;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Path;
 import java.time.Duration;
 import java.util.stream.Stream;
 
+import static java.lang.String.format;
+import static java.lang.System.getProperty;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import utils.CustomWaits;
+
+import utils.CustomWait;
 
 
 class UrlTest extends WebTest {
 
-    public static final String APP_URL = "http://qatools.ro/test";
-    private CustomWaits waits;
+    public static final String APP_URL = format(
+            "file://%s",
+            Path.of(getProperty("user.dir"), "html", "test.html")
+                    .toAbsolutePath()
+    );
+    private CustomWait waits;
 
     @BeforeEach
-    public void openLink(){
+    public void openLink() {
         driver.get(APP_URL);
-        waits = new CustomWaits(driver, Duration.ofSeconds(2));
+        waits = new CustomWait(driver, Duration.ofSeconds(2));
     }
 
     @Test
     void urlPositiveTest() {
-        waits.waitUntilUrlContains("html");
+        waits.untilUrlContains("html");
     }
 
     @Test
     void urlNegativeTest() {
         var assertionError = assertThrows(
                 AssertionError.class,
-                () -> waits.waitUntilUrlContains("html1"));
+                () -> waits.untilUrlContains("html1"));
+
+        System.out.println(assertionError.getMessage());
 
         Stream.of(
                 "Timed out after 2 seconds",
                 "Expected: a string containing \"html1\"",
-                "but: was \"http://qatools.ro/test.html\""
+                "file:///C:/_work/demo/html/test.html"
         ).forEach(assertionMessageSubstring -> assertThat(
                 assertionError.getMessage(),
                 containsString(assertionMessageSubstring)));
-
-        System.out.println(assertionError.getMessage());
     }
 
 }
