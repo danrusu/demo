@@ -1,7 +1,6 @@
 package test1;
 
 import base.WebTest;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,22 +24,23 @@ class UrlTest extends WebTest {
 
     @Test
     void urlTestPositive() {
-        waitUntilUrlContains("html", driver, Duration.ofSeconds(1));
+        waitUntilUrlContains("html", driver, Duration.ofSeconds(2));
     }
 
     @Test
     void urlTestNegative() {
+        Duration twoSecondsTimeout = Duration.ofSeconds(2);
         AssertionError assertionError = assertThrows(
                 AssertionError.class,
-                () -> waitUntilUrlContains("html1", driver, Duration.ofSeconds(1)));
+                () -> waitUntilUrlContains("html1", driver, twoSecondsTimeout));
 
         Stream.of(
-                "Timed out after 1 seconds",
+                "Timed out after 2 seconds",
                 "Expected: a string containing \"html1\"",
                 "but: was \"http://qatools.ro/test.html\""
-        ).forEach(assertionMessageSubtring -> assertThat(
+        ).forEach(assertionMessageSubstring -> assertThat(
                 assertionError.getMessage(),
-                containsString(assertionMessageSubtring)));
+                containsString(assertionMessageSubstring)));
 
         System.out.println(assertionError.getMessage());
     }
