@@ -1,8 +1,11 @@
 package test1;
 
-import base.WebTest;
+import base.ChromeDriverExtension;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.chrome.ChromeDriver;
+import utils.CustomWait;
 
 import java.nio.file.Path;
 import java.time.Duration;
@@ -15,10 +18,8 @@ import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static utils.FileUtils.getFileURIForBrowser;
 
-import utils.CustomWait;
-
-
-class UrlTest extends WebTest {
+@ExtendWith(ChromeDriverExtension.class)
+class UrlTest {
 
     public static final String LOCAL_HTML_URI = getFileURIForBrowser(Path.of(
             getProperty("user.dir"),
@@ -27,7 +28,7 @@ class UrlTest extends WebTest {
     private CustomWait waits;
 
     @BeforeEach
-    public void openLink() {
+    public void openLink(ChromeDriver driver) {
         driver.get(LOCAL_HTML_URI);
         waits = new CustomWait(driver, Duration.ofSeconds(2));
     }

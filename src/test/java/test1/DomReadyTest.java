@@ -1,9 +1,11 @@
 package test1;
 
-import base.WebTest;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.chrome.ChromeDriver;
 import utils.CustomWait;
 
 import java.nio.file.Path;
@@ -12,7 +14,8 @@ import java.time.Duration;
 import static java.lang.System.getProperty;
 import static utils.FileUtils.getFileURIForBrowser;
 
-class DomReadyTest extends WebTest {
+@ExtendWith(SeleniumJupiter.class)
+class DomReadyTest {
 
     public static final String LOCAL_HTML_URI = getFileURIForBrowser(Path.of(
             getProperty("user.dir"),
@@ -20,7 +23,7 @@ class DomReadyTest extends WebTest {
     private CustomWait wait;
 
     @BeforeEach
-    public void openLink() {
+    public void openLink(ChromeDriver driver) {
         driver.get(LOCAL_HTML_URI);
         wait = new CustomWait(driver, Duration.ofSeconds(2));
     }
@@ -32,7 +35,7 @@ class DomReadyTest extends WebTest {
 
     @Test
     @Disabled("not implemented yet")
-    void domReadyNegativeTest() {
+    void domReadyNegativeTest(ChromeDriver driver) {
         //TODO
     }
 }
