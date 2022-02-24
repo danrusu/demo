@@ -16,6 +16,7 @@ import static utils.CustomWaits.waitUntilUrlContains;
 class UrlTest extends WebTest {
 
     public static final String APP_URL = "http://qatools.ro/test";
+    private Duration twoSecondsDuration = Duration.ofSeconds(2);
 
     @BeforeEach
     public void openLink(){
@@ -24,15 +25,14 @@ class UrlTest extends WebTest {
 
     @Test
     void urlTestPositive() {
-        waitUntilUrlContains("html", driver, Duration.ofSeconds(2));
+        waitUntilUrlContains("html", driver, twoSecondsDuration);
     }
 
     @Test
     void urlTestNegative() {
-        Duration twoSecondsTimeout = Duration.ofSeconds(2);
-        AssertionError assertionError = assertThrows(
+        var assertionError = assertThrows(
                 AssertionError.class,
-                () -> waitUntilUrlContains("html1", driver, twoSecondsTimeout));
+                () -> waitUntilUrlContains("html1", driver, twoSecondsDuration));
 
         Stream.of(
                 "Timed out after 2 seconds",
