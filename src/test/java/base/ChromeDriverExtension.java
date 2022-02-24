@@ -24,12 +24,12 @@ public class ChromeDriverExtension implements
     }
 
     @Override
-    public void beforeAll(ExtensionContext extensionContext) throws Exception {
+    public void beforeAll(ExtensionContext extensionContext) {
         chromedriver().setup();
     }
 
     @Override
-    public void afterEach(ExtensionContext extensionContext) throws Exception {
+    public void afterEach(ExtensionContext extensionContext) {
         driver.quit();
     }
 }
