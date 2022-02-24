@@ -13,14 +13,14 @@ import static java.lang.System.getProperty;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static utils.FileUtils.getHtmlFileURI;
+import static utils.FileUtils.getFileURI;
 
 import utils.CustomWait;
 
 
 class UrlTest extends WebTest {
 
-    public static final String LOCAL_HTML_URI = getHtmlFileURI(Path.of(
+    public static final String LOCAL_HTML_URI = getFileURI(Path.of(
             getProperty("user.dir"),
             "html", "test.html"));
 
