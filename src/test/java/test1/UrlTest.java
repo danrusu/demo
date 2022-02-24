@@ -19,16 +19,16 @@ import utils.CustomWait;
 
 class UrlTest extends WebTest {
 
-    public static final String APP_URL = format(
+    public static final String LOCAL_HTML_URI = format(
             "file://%s",
             Path.of(getProperty("user.dir"), "html", "test.html")
-                    .toAbsolutePath()
+                    .toUri().getRawPath()
     );
     private CustomWait waits;
 
     @BeforeEach
     public void openLink() {
-        driver.get(APP_URL);
+        driver.get(LOCAL_HTML_URI);
         waits = new CustomWait(driver, Duration.ofSeconds(2));
     }
 
@@ -39,17 +39,17 @@ class UrlTest extends WebTest {
 
     @Test
     void urlNegativeTest() {
-        var assertionError = assertThrows(
+        var expectedAssertionError = assertThrows(
                 AssertionError.class,
                 () -> waits.untilUrlContains("html1"));
 
-        System.out.println(assertionError.getMessage());
+        System.out.println(expectedAssertionError.getMessage());
         Stream.of(
                 "Timed out after 2 seconds",
                 "Expected: a string containing \"html1\"",
-                format("but: was \"%s\"", APP_URL)
+                format("but: was \"%s\"", LOCAL_HTML_URI)
         ).forEach(assertionMessageSubstring -> assertThat(
-                assertionError.getMessage(),
+                expectedAssertionError.getMessage(),
                 containsString(assertionMessageSubstring)));
     }
 
