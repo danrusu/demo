@@ -9,12 +9,8 @@ import utils.CustomWait;
 import java.nio.file.Path;
 import java.time.Duration;
 
-import static java.lang.String.format;
 import static java.lang.System.getProperty;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static utils.FileUtils.getFileURIForBrowser;
-
 
 class DomReadyTest extends WebTest {
 

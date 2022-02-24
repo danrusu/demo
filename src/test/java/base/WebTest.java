@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 
 public class WebTest {
-    protected static WebDriver driver;
+    protected WebDriver driver;
 
     @BeforeEach
     public void beforeAll() {
