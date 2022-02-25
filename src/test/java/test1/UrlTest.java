@@ -40,7 +40,7 @@ class UrlTest {
 
     @Test
     void urlNegativeTest() {
-        var expectedAssertionError = assertThrows(
+        final var expectedAssertionError = assertThrows(
                 AssertionError.class,
                 () -> waits.untilUrlContains("html1"));
 

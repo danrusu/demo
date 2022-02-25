@@ -13,12 +13,18 @@ public class ChromeDriverExtension implements
     private WebDriver driver;
 
     @Override
-    public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
+    public boolean supportsParameter(
+            ParameterContext parameterContext,
+            ExtensionContext extensionContext
+    ) throws ParameterResolutionException {
         return (parameterContext.getParameter().getType() == ChromeDriver.class);
     }
 
     @Override
-    public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
+    public Object resolveParameter(
+            ParameterContext parameterContext,
+            ExtensionContext extensionContext
+    ) throws ParameterResolutionException {
         driver = new ChromeDriver();
         return driver;
     }

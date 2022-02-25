@@ -9,11 +9,12 @@ import java.time.Duration;
 
 import static java.lang.String.format;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.is;
 
 public class CustomWait {
-    private WebDriver driver;
-    private Duration timeout;
+    private final WebDriver driver;
+    private final Duration timeout;
 
     public CustomWait(WebDriver driver, Duration timeout) {
         this.driver = driver;
@@ -24,7 +25,7 @@ public class CustomWait {
         try {
             new WebDriverWait(driver, timeout)
                     .until(d -> driver.getCurrentUrl().contains(substring));
-        } catch (TimeoutException timeoutException) {
+        } catch (final TimeoutException timeoutException) {
             assertThat(
                     getTimeoutMessage(),
                     driver.getCurrentUrl(),
@@ -35,7 +36,7 @@ public class CustomWait {
     public void untilDomReady() {
         try {
             new WebDriverWait(driver, timeout).until(d -> isDomReady());
-        } catch (TimeoutException timeoutException) {
+        } catch (final TimeoutException timeoutException) {
             assertThat(
                     getTimeoutMessage(),
                     getDomReadyState(),

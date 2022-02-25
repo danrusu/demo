@@ -35,7 +35,7 @@ class DomReadyTest {
 
     @Test
     @Disabled("not implemented yet")
-    void domReadyNegativeTest(ChromeDriver driver) {
+    void domReadyNegativeTest() {
         //TODO
     }
 }
