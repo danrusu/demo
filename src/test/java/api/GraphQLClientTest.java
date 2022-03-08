@@ -38,8 +38,6 @@ class GraphQLClientTest {
                 .extract()
                 .response();
 
-        System.out.println(res.body().prettyPrint());
-
-
+        //System.out.println(res.body().prettyPrint());
     }
 }
