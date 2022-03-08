@@ -1,4 +1,4 @@
-package test1;
+package ui;
 
 import base.ChromeDriverExtension;
 import org.junit.jupiter.api.BeforeEach;

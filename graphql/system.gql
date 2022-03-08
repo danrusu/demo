@@ -1,0 +1,71 @@
+{
+    SystemFH{
+        Assets {
+            IsLocated {
+                SublocationOf {
+                    label
+                    ... on Floor {
+                        level
+                    }
+                }
+                label
+            }
+            label
+            DeviceType {
+                Name {
+                    en
+                }
+            }
+            serialNumber
+            softwareVersion
+            deviceReboots: attribute(key: "deviceReboots") {
+                value
+            }
+            operationTime: attribute(key: "operationTime") {
+                value
+            }
+            systemState: attribute(key: "systemState") {
+                value
+            }
+            lastReset: attribute(key: "lastReset") {
+                value
+            }
+            dtType
+            ... on IDeviceFHRF {
+                connectivity: attribute(key: "connectivity") {
+                    value
+                }
+                signalStrength: attribute(key: "signalStrength") {
+                    value
+                }
+                channel: attribute(key: "channel") {
+                    value
+                }
+                batteryStatus
+                resetCause: attribute(key: "resetCause") {
+                    value
+                }
+                deviceErrorLog: attribute(key: "deviceErrorLog") {
+                    value
+                }
+            }
+            ... on IDeviceFHTP {
+                busVoltage: attribute(key: "busVoltage") {
+                    value
+                }
+                parityErrors: attribute(key: "parityErrors") {
+                    value
+                }
+                spikeErrors: attribute(key: "spikeErrors") {
+                    value
+                }
+                bitErrors: attribute(key: "bitErrors") {
+                    value
+                }
+                deviceErrors: attribute(key: "deviceErrors") {
+                    value
+                }
+            }
+        }
+    }
+}

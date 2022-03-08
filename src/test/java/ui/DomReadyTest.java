@@ -1,4 +1,4 @@
-package test1;
+package ui;
 
 import io.github.bonigarcia.seljup.SeleniumJupiter;
 import org.junit.jupiter.api.BeforeEach;
